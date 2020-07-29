@@ -8,7 +8,7 @@ import { UserDTO } from './user.dto';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private userRepository: Repository<User>
+    private userRepository: Repository<User>,
   ) {}
 
   async findAll(): Promise<User[]> {
@@ -44,5 +44,9 @@ export class UserService {
     }
     await this.userRepository.update(id, data);
     return this.userRepository.findOne(id);
+  }
+
+  async getByEmail(email: string): Promise<User> {
+    return await this.userRepository.findOne({ where: { email } });
   }
 }

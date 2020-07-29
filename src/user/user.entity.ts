@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, Unique } from 'typeorm';
+import { Page } from '../page/page.entity';
 
 @Entity('user')
 export class User {
@@ -6,14 +7,22 @@ export class User {
   id: number;
 
   @Column()
+  @Unique(['email'])
+  email: string;
+
+  @Column()
   username: string;
 
   @Column()
-  firstName: string;
+  firstname: string;
 
   @Column()
-  lastName: string;
+  lastname: string;
 
   @Column()
   password: string;
+
+  @OneToOne(type => Page)
+  @JoinColumn()
+  page: Page;
 }
