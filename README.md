@@ -1,4 +1,4 @@
-<p align="center">bonanza</p>
+<h2 align="center">bonanza</h2>
 
 ## Description
 
