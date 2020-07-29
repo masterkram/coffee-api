@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, Unique } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, Unique, BeforeInsert } from 'typeorm';
 import { Page } from '../page/page.entity';
+import * as bcrypt from 'bcryptjs';
 
 @Entity('user')
 export class User {
@@ -10,13 +11,13 @@ export class User {
   @Unique(['email'])
   email: string;
 
-  @Column()
+  @Column({default: null})
   username: string;
 
-  @Column()
+  @Column({default: null})
   firstname: string;
 
-  @Column()
+  @Column({default: null})
   lastname: string;
 
   @Column()
@@ -25,4 +26,9 @@ export class User {
   @OneToOne(type => Page)
   @JoinColumn()
   page: Page;
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
 }
