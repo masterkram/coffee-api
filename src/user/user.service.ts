@@ -11,8 +11,9 @@ export class UserService {
     private userRepository: Repository<User>,
   ) {}
 
-  async findAll(): Promise<User[]> {
-    return await this.userRepository.find();
+  async findAll() {
+    const users = await this.userRepository.find();
+    return users.map(user => user.toResponseObject());
   }
 
   async findOne(id: string): Promise<User> {
@@ -33,8 +34,15 @@ export class UserService {
   }
 
   async create(data: UserDTO) {
-    const user = this.userRepository.create(data);
-    return await this.userRepository.save(user);
+    const { email } = data;
+    let user = await this.userRepository.findOne({ where: { email } });
+    if (user) {
+      throw new HttpException('User already exists', HttpStatus.FORBIDDEN);
+    }
+    user = this.userRepository.create(data);
+    user.created = new Date();
+    await this.userRepository.save(user);
+    return user.toResponseObject();
   }
 
   async update(id: string, data: Partial<UserDTO>) {
