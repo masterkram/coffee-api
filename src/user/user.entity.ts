@@ -35,10 +35,6 @@ export class User {
   @Column({ default: null })
   created: Date;
 
-  @OneToOne(type => Page)
-  @JoinColumn()
-  page: Page;
-
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);

@@ -8,10 +8,13 @@ import {
   Param,
   UsePipes,
   Logger,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDTO } from './user.dto';
 import { ValidationPipe } from '../shared/validation.pipe';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('users')
 export class UserController {
@@ -24,6 +27,13 @@ export class UserController {
     return this.service.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('/profile')
+  async getProfile(@Request() req) {
+    const user = await this.fetch(req.user.userId);
+    return user.toResponseObject();
+  }
+  
   @Get(':id')
   fetch(@Param('id') id: string) {
     return this.service.findOne(id);

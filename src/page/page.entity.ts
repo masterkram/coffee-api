@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { User } from '../user/user.entity';
+import { Trainer } from 'src/user/trainer.entity';
 
 @Entity('page')
 export class Page {
@@ -9,7 +10,7 @@ export class Page {
   @Column()
   html: string;
 
-  @OneToOne(type => User, user => user.page)
+  @OneToOne(type => Trainer, trainer => trainer.page)
   @JoinColumn()
-  user: User
+  trainer: Trainer
 }
