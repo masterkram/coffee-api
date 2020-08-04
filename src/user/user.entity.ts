@@ -6,9 +6,14 @@ import {
   JoinColumn,
   Unique,
   BeforeInsert,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
-import { Page } from '../page/page.entity';
 import * as bcrypt from 'bcryptjs';
+import { type } from 'os';
+import { CoffeeController } from 'src/coffee/coffee.controller';
+import { Coffee } from 'src/coffee/coffee.entity';
 
 @Entity('user')
 export class User {
@@ -31,9 +36,12 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
   @Column({ default: null })
   created: Date;
+
+  @ManyToMany(type => Coffee, coffee => coffee.users)
+  @JoinTable()
+  favoriteCoffees: Coffee[];
 
   @BeforeInsert()
   async hashPassword() {

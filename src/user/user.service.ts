@@ -16,7 +16,7 @@ export class UserService {
     return users.map(user => user.toResponseObject());
   }
 
-  async findOne(id: string): Promise<User> {
+  async findOne(id: number): Promise<User> {
     const user = await this.userRepository.findOne(id);
     if (!user) {
       throw new HttpException('Not found', HttpStatus.NOT_FOUND);

@@ -35,7 +35,7 @@ export class UserController {
   }
   
   @Get(':id')
-  fetch(@Param('id') id: string) {
+  fetch(@Param('id') id: number) {
     return this.service.findOne(id);
   }
 
