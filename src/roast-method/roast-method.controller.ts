@@ -1,5 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Put, Body, Delete, Post } from '@nestjs/common';
 import { RoastMethodService } from './roast-method.service';
+import { RoastMethodDTO } from './roast-method.dto';
 
 @Controller('roast-method')
 export class RoastMethodController {
@@ -13,5 +14,20 @@ export class RoastMethodController {
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.service.findOne(id);
+  }
+
+  @Post()
+  create(@Body() data: RoastMethodDTO) {
+    return this.service.create(data);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: number, @Body() data: RoastMethodDTO) {
+    return this.service.update(id, data);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    return this.service.remove(id);
   }
 }

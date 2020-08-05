@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
 import { VarietyService } from './variety.service';
 import { VarietyDTO } from './variety.dto';
 
@@ -26,4 +26,8 @@ export class VarietyController {
     return this.service.update(id, data);
   }
 
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    this.service.remove(id);
+  }
 }

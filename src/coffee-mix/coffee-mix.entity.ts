@@ -8,4 +8,7 @@ export class CoffeeMix {
   @Column()
   @Unique(['name'])
   name: string;
+
+  @Column()
+  created: Date;
 }

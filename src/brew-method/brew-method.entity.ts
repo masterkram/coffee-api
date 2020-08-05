@@ -12,5 +12,8 @@ export class BrewMethod {
 
   @Column()
   @Unique(['name'])
-  name: string
+  name: string;
+
+  @Column()
+  created: Date;
 }

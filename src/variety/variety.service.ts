@@ -23,7 +23,7 @@ export class VarietyService {
     return variety;
   }
 
-  async remove(id: string): Promise<Variety> {
+  async remove(id: number): Promise<Variety> {
     const variety = await this.varietyRepository.findOne(id);
     if (!variety) {
       throw new HttpException('Not found', HttpStatus.NOT_FOUND);

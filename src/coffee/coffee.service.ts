@@ -34,4 +34,22 @@ export class CoffeeService {
     await this.coffeeRepository.save(coffee);
     return coffee;
   }
+
+  async update(id: number, data: Partial<CoffeeDTO>) {
+    const coffee = await this.coffeeRepository.findOne(id);
+    if (!coffee) {
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+    }
+    await this.coffeeRepository.update(id, data);
+    return this.coffeeRepository.findOne(id);
+  }
+
+  async remove(id: number) {
+    const coffee = await this.coffeeRepository.findOne(id);
+    if (!coffee) {
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+    }
+    await this.coffeeRepository.delete(id);
+    return coffee;
+  }
 }

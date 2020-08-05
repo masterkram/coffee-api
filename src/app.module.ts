@@ -13,7 +13,16 @@ import { RoastMethodModule } from './roast-method/roast-method.module';
 import { BrewMethodModule } from './brew-method/brew-method.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), UserModule, AuthModule, CoffeeModule, CoffeeMixModule, VarietyModule, RoastMethodModule, BrewMethodModule],
+  imports: [
+    TypeOrmModule.forRoot({ autoLoadEntities: true }),
+    UserModule,
+    AuthModule,
+    CoffeeModule,
+    CoffeeMixModule,
+    VarietyModule,
+    RoastMethodModule,
+    BrewMethodModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
