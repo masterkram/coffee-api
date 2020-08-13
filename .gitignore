@@ -35,4 +35,3 @@ lerna-debug.log*
 
 # Settings
 .env
-ormconfig.json
