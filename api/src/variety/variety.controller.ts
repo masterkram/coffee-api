@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, Query } from '@nestjs/common';
 import { VarietyService } from './variety.service';
 import { VarietyDTO } from './variety.dto';
 
@@ -9,6 +9,23 @@ export class VarietyController {
   @Get()
   findAll() {
     return this.service.findAll();
+  }
+
+  @Get('/tree')
+  getTree(@Query() query) {
+    let root = query.root ? query.root : 1;
+    console.log(root);
+    return this.service.getTree(root);
+  }
+
+  @Get('leaves')
+  getLeaves() {
+    return this.service.getLeaves();
+  }
+
+  @Get('path/:id')
+  getPath(@Param('id') id: number) {
+    return this.service.getPath(id);
   }
 
   @Get(':id')

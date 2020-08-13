@@ -26,6 +26,14 @@ __decorate([
     typeorm_1.Column(),
     __metadata("design:type", Date)
 ], Variety.prototype, "created", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Variety.prototype, "lft", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Variety.prototype, "rgt", void 0);
 Variety = __decorate([
     typeorm_1.Entity('variety')
 ], Variety);

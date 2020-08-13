@@ -58,6 +58,31 @@ let VarietyService = class VarietyService {
         await this.varietyRepository.update(id, data);
         return this.varietyRepository.findOne(id);
     }
+    async getTree(root) {
+        return await typeorm_2.getConnection()
+            .createQueryBuilder()
+            .select("node.name")
+            .from(variety_entity_1.Variety, 'node')
+            .addFrom(variety_entity_1.Variety, 'parent')
+            .where("node.lft BETWEEN parent.lft AND parent.rgt AND parent.id = :root", { root: root })
+            .orderBy("node.lft")
+            .execute();
+    }
+    async getLeaves() {
+        return this.varietyRepository.createQueryBuilder()
+            .select('name')
+            .where("rgt = lft + 1")
+            .execute();
+    }
+    async getPath(id) {
+        return await typeorm_2.getConnection()
+            .createQueryBuilder()
+            .select("parent.name")
+            .from(variety_entity_1.Variety, "node")
+            .addFrom(variety_entity_1.Variety, "parent")
+            .where("node.lft BETWEEN parent.lft AND parent.rgt AND node.id = :id", { id: id })
+            .execute();
+    }
 };
 VarietyService = __decorate([
     common_1.Injectable(),

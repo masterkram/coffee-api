@@ -23,6 +23,17 @@ let VarietyController = class VarietyController {
     findAll() {
         return this.service.findAll();
     }
+    getTree(query) {
+        let root = query.root ? query.root : 1;
+        console.log(root);
+        return this.service.getTree(root);
+    }
+    getLeaves() {
+        return this.service.getLeaves();
+    }
+    getPath(id) {
+        return this.service.getPath(id);
+    }
     findOne(id) {
         return this.service.findOne(id);
     }
@@ -42,6 +53,26 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], VarietyController.prototype, "findAll", null);
+__decorate([
+    common_1.Get('/tree'),
+    __param(0, common_1.Query()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], VarietyController.prototype, "getTree", null);
+__decorate([
+    common_1.Get('leaves'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], VarietyController.prototype, "getLeaves", null);
+__decorate([
+    common_1.Get('path/:id'),
+    __param(0, common_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], VarietyController.prototype, "getPath", null);
 __decorate([
     common_1.Get(':id'),
     __param(0, common_1.Param('id')),

@@ -7,8 +7,8 @@ const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const port = process.env.port || 8080;
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    app.setGlobalPrefix('api');
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
+    app.enableCors();
     const options = new swagger_1.DocumentBuilder().setTitle('Coffee API').build();
     const document = swagger_1.SwaggerModule.createDocument(app, options);
     swagger_1.SwaggerModule.setup('api', app, document);

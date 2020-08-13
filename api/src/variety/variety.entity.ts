@@ -11,4 +11,10 @@ export class Variety {
 
   @Column()
   created: Date;
+
+  @Column()
+  lft: number;
+
+  @Column()
+  rgt: number;
 }

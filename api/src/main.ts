@@ -7,8 +7,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 const port = process.env.port || 8080;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix('api');
+  const app = await NestFactory.create(AppModule, {cors: true});
+  app.enableCors();
 
   const options = new DocumentBuilder().setTitle('Coffee API').build();
   const document = SwaggerModule.createDocument(app, options);

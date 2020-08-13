@@ -9,4 +9,7 @@ export declare class VarietyService {
     remove(id: number): Promise<Variety>;
     create(data: VarietyDTO): Promise<Variety>;
     update(id: number, data: Partial<VarietyDTO>): Promise<Variety>;
+    getTree(root: number): Promise<Variety[]>;
+    getLeaves(): Promise<Variety[]>;
+    getPath(id: number): Promise<Variety[]>;
 }
