@@ -1,10 +1,13 @@
 import axios from 'axios';
-const url = 'http://localhost/';
+const url = 'http://localhost:8080/';
 
-export function getUserCoffees(id) {
-  let coffees = null;
-  axios.get(url + 'coffee/user/' + id)
-  .then((response) => (coffees = response));
+export async function getUserCoffees() {
+  const data = await axios.get(url + 'coffee/');
+  return data.data;
+}
 
-  return coffees;
+export async function getVarietyTree() {
+  const request = await axios.get(url + 'variety/tree');
+  console.log(request);
+  return request.data;
 }

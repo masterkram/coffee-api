@@ -3,20 +3,18 @@
     <Drawer />
 
     <v-main>
-      <MyCoffee />
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import MyCoffee from './components/MyCoffee';
 import Drawer from './components/Drawer';
 
 export default {
   name: 'App',
 
   components: {
-    MyCoffee,
     Drawer,
   },
 

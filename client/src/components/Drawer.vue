@@ -28,9 +28,10 @@
         v-for="item in items"
         :key="item.title"
         link
+        :to="item.href"
       >
         <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
+          <font-awesome-icon :icon="item.icon" />
         </v-list-item-icon>
 
         <v-list-item-content>
@@ -47,9 +48,11 @@
       return {
         drawer: true,
         items: [
-          { title: 'My Coffees', icon: 'mdi-coffee-outline' },
-          { title: 'Discover', icon: 'mdi-image' },
-          { title: 'About', icon: 'mdi-help-box' },
+          { title: 'My Coffees', icon: 'coffee', href: '/my-coffee' },
+          { title: 'Brew Methods', icon: 'blender', href: '/brew-methods' },
+          { title: 'Roast Methods', icon: 'fire', href: '/roast-methods' },
+          { title: 'Coffee Blends', icon: 'tags', href: '/coffee-blends' },
+          { title: 'Varieties', icon: 'leaf', href: '/varieties' },
         ],
       }
     },
