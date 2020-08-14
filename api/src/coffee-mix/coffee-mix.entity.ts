@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Unique, ManyToMany, JoinTable } from 'typeorm';
+import { CoffeeGrain } from './coffee-grain.entity';
 
 @Entity('coffee-mix')
 export class CoffeeMix {
@@ -8,6 +9,10 @@ export class CoffeeMix {
   @Column()
   @Unique(['name'])
   name: string;
+
+  @ManyToMany(type => CoffeeGrain)
+  @JoinTable()
+  coffeeGrains: CoffeeGrain[];
 
   @Column()
   created: Date;
