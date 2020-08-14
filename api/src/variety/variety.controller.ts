@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Post, Body, Put, Delete, Query } from '@nestjs/common';
-import { VarietyService } from './variety.service';
+import { VarietyService, Tree } from './variety.service';
 import { VarietyDTO } from './variety.dto';
 
 @Controller('variety')
@@ -12,10 +12,8 @@ export class VarietyController {
   }
 
   @Get('/tree')
-  getTree(@Query() query) {
-    let root = query.root ? query.root : 1;
-    console.log(root);
-    return this.service.getTree(root);
+  getTree() {
+    return this.service.getTree();
   }
 
   @Get('leaves')

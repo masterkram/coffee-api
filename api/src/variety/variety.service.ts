@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Variety } from './variety.entity';
-import { Repository, getConnection } from 'typeorm';
+import { Repository, getConnection, DatabaseType } from 'typeorm';
 import { VarietyDTO } from './variety.dto';
 
 @Injectable()
@@ -53,15 +53,55 @@ export class VarietyService {
     return this.varietyRepository.findOne(id);
   }
 
-  async getTree(root: number): Promise<Variety[]> {
-    return await getConnection()
+  async getTree(): Promise<any> {
+    const arr = await getConnection()
     .createQueryBuilder()
-    .select("node.name")
+    .addSelect("node.*, (COUNT(parent.name) - 1) AS depth")
     .from(Variety, 'node')
     .addFrom(Variety, 'parent')
-    .where("node.lft BETWEEN parent.lft AND parent.rgt AND parent.id = :root", {root: root})
+    .where("node.lft BETWEEN parent.lft AND parent.rgt")
+    .groupBy("node.name")
     .orderBy("node.lft")
     .execute();
+
+    let currDepth = -1;
+
+    const result = [];
+
+    //create path structure for depths
+    const path = [];
+    
+    //create 'root' node
+    let olditem = {children: result};
+    
+    for(let item of arr){
+        if(item.depth > currDepth){
+            //remove possible old reference (old depth of other branch
+            if(path[item.depth]) {
+              path[item['depth']] = null;
+            }
+    
+            //make sure we have an array entry
+            if(!(olditem.children)) {
+              olditem.children = [];
+            }
+    
+            //acquire target
+            path[item.depth] = olditem.children;
+        }
+        if(item.depth != currDepth) {
+          olditem = null;
+        }
+        //set correct target
+        currDepth = item.depth;
+        //add item
+        path[currDepth].push(item);
+        //copy & remove reference
+        olditem = item;
+        item = null;
+    }
+
+    return result;
   }
 
   async getLeaves(): Promise<Variety[]> {
@@ -79,5 +119,27 @@ export class VarietyService {
     .addFrom(Variety, "parent")
     .where("node.lft BETWEEN parent.lft AND parent.rgt AND node.id = :id", {id: id})
     .execute();
+  }
+}
+
+export class Tree<T> {
+  private root: Node;
+
+  constructor(root: Node) {
+    this.root = root;
+  }
+}
+
+class Node {
+  public value: any;
+  public children: Node[] | null;
+
+  constructor(value: any, children: Node[] | null = null) {
+    this.value = value;
+    this.children = children ? children : [];
+  }
+
+  addChild(val: any) {
+    this.children.push(new Node(val));
   }
 }

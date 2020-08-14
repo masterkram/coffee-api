@@ -8,6 +8,6 @@ export async function getUserCoffees() {
 
 export async function getVarietyTree() {
   const request = await axios.get(url + 'variety/tree');
-  console.log(request);
+  console.log(request.data);
   return request.data;
 }
