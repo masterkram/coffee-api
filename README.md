@@ -1,13 +1,16 @@
 <h2 align="center">coffee app</h2>
 
 ## Description
-application used to create detailed coffee recepies:
+application used to create detailed coffee blends:
 
 + create coffee blends, with variety and origin.
 + browse different coffee varieties.
 + track taste with different roast methods or brew methods.
 
-api uses the nestjs framework.
+### api
+uses the nestjs framework.
+
+### client
 client uses the vue framework.
 
 ## Installation
