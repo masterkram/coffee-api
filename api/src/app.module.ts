@@ -11,6 +11,7 @@ import { CoffeeMixModule } from './coffee-mix/coffee-mix.module';
 import { VarietyModule } from './variety/variety.module';
 import { RoastMethodModule } from './roast-method/roast-method.module';
 import { BrewMethodModule } from './brew-method/brew-method.module';
+import { CuppingChartModule } from './cupping-chart/cupping-chart.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { BrewMethodModule } from './brew-method/brew-method.module';
     VarietyModule,
     RoastMethodModule,
     BrewMethodModule,
+    CuppingChartModule,
   ],
   controllers: [AppController],
   providers: [

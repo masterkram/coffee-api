@@ -5,6 +5,7 @@
     permanent
     absolute
     dark
+    app
   >
     <v-list
       dense
@@ -18,7 +19,7 @@
 
         <v-list-item-content>
           <v-list-item-title>Coffee App</v-list-item-title>
-          <v-list-item-subtitle>Martin Garrix</v-list-item-subtitle>
+          <v-list-item-subtitle>John Doe</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -39,6 +40,11 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+  <template v-slot:append>
+    <div class="pa-2">
+      <v-btn block>Logout</v-btn>
+    </div>
+  </template>
   </v-navigation-drawer>
 </template>
 

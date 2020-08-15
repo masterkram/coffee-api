@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueRouter from 'vue-router';
 import MyCoffee from './components/MyCoffee';
 import Varieties from './components/Varieties';
+import CreateCoffee from './components/CreateCoffee';
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,7 @@ library.add(faCoffee, faLeaf, faFire, faBlender, faTags);
 const routes = [
   { path:'/my-coffee', component: MyCoffee },
   { path:'/varieties', component: Varieties },
+  { path: '/create', component: CreateCoffee },
 ];
 
 const router = new VueRouter({
