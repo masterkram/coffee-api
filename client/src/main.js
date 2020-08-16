@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCoffee, faLeaf, faFire, faBlender, faTags } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faLeaf, faFire, faBlender, faTags, faChartArea } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueRouter from 'vue-router';
 import MyCoffee from './components/MyCoffee';
@@ -11,7 +11,7 @@ import CreateCoffee from './components/CreateCoffee';
 
 Vue.use(VueRouter);
 
-library.add(faCoffee, faLeaf, faFire, faBlender, faTags);
+library.add(faCoffee, faLeaf, faFire, faBlender, faTags, faChartArea);
 const routes = [
   { path:'/my-coffee', component: MyCoffee },
   { path:'/varieties', component: Varieties },

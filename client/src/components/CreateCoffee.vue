@@ -5,7 +5,7 @@
         <v-card outlined>
           <v-toolbar color="primary" dark flat>
             <v-toolbar-title>
-              <font-awesome-icon icon="coffee" class="mr-4" />
+              <font-awesome-icon icon="coffee" />
               Create Coffee
             </v-toolbar-title>
             <v-spacer></v-spacer>
@@ -39,12 +39,16 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary">Create</v-btn>
+            <v-btn color="primary">Save</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
       <v-col cols="12" sm="8" md="4">
         <v-card outlined>
+          <v-card-title>
+            <font-awesome-icon class="mr-2" icon="chart-area" />
+            Cupping Chart
+          </v-card-title>
           <CuppingChart :stats="stats" />
         </v-card>
       </v-col>

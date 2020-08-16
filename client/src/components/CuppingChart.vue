@@ -1,24 +1,31 @@
 <template>
   <v-container>
-    <svg width="250" height="250">
-      <g>
-        <polygon :points="points"></polygon>
-        <circle cx="100" cy="100" r="80"></circle>
-        <AxisLabel
-          v-for="(stat, index) in stats"
-          v-bind:key="index"
-          :stat="stat"
-          :index="index"
-          :total="stats.length">
-        </AxisLabel>
-      </g>
-    </svg>
-
-    <div v-for="(stat, index) in stats" v-bind:key="index">
-      <label class="stat-label">{{stat.label}}</label>
-      <br />
-      <input type="range" v-model="stat.value" min="0" max="100" />
-      <span>{{stat.value}}</span>
+    <div class="graph-container">
+      <svg width="250" height="250">
+        <g>
+          <polygon :points="points"></polygon>
+          <circle cx="100" cy="100" r="80"></circle>
+          <circle cx="100" cy="100" r="60"></circle>
+          <circle cx="100" cy="100" r="40"></circle>
+          <circle cx="100" cy="100" r="20"></circle>
+          <circle cx="100" cy="100" r="10"></circle>
+          <AxisLabel
+            v-for="(stat, index) in stats"
+            v-bind:key="index"
+            :stat="stat"
+            :index="index"
+            :total="stats.length">
+          </AxisLabel>
+        </g>
+      </svg>
+    </div>
+    <div class="value-container">
+      <div class="mx-1" v-for="(stat, index) in stats" v-bind:key="index">
+        <label class="stat-label">{{stat.label}}</label>
+        <br />
+        <input type="range" v-model="stat.value" min="0" max="100" />
+        <span class="fixed-w">{{stat.value}}</span>
+      </div>
     </div>
   </v-container>
 </template>
@@ -64,6 +71,21 @@ export default {
 </script>
 
 <style>
+  .graph-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .value-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .value-container > div {
+    min-width: 157px;
+  }
+
   polygon {
     fill: #42b983;
     opacity: 0.75;
@@ -75,7 +97,6 @@ export default {
   }
 
   text {
-    font-family: Helvetica Neue, Arial, sans-serif;
     font-size: 10px;
     fill: #666;
   }

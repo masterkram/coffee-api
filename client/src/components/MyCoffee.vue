@@ -3,12 +3,12 @@
     <v-card
       v-if="!coffees.length"
       outlined
-      max-width="475"
+      max-width="600"
       class="mx-auto"
     >
       <v-card-title class="justify-center gray--text">Looks empty right? coffees will show up here:</v-card-title>
       <v-card-actions class="justify-center">
-        <v-btn link to="/create" color="primary">Create Your first.</v-btn>
+        <v-btn link to="/create" color="primary">Create coffee</v-btn>
       </v-card-actions>
     </v-card>
 

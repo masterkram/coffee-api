@@ -1,4 +1,7 @@
-<h2 align="center">coffee app</h2>
+<h2 align="center">Coffee App</h2>
+
+## Preview
+<img src="./preview.png" />
 
 ## Description
 application used to create detailed coffee blends:
