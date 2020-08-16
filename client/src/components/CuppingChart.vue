@@ -8,7 +8,6 @@
           <circle cx="100" cy="100" r="60"></circle>
           <circle cx="100" cy="100" r="40"></circle>
           <circle cx="100" cy="100" r="20"></circle>
-          <circle cx="100" cy="100" r="10"></circle>
           <AxisLabel
             v-for="(stat, index) in stats"
             v-bind:key="index"
